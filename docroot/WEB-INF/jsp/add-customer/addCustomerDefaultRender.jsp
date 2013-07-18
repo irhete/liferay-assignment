@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <h1>Add customer</h1>
 
@@ -24,7 +23,7 @@
 	</c:when>
 </c:choose>
 
-<form:form action="${addCustomerMethodURL}" method="post" modelAttribute="customer">
+<form action="${addCustomerMethodURL}" method="post">
 	<table id="addCustomerTable">
 		<tr>
 			<th>First name:</th>
@@ -36,7 +35,7 @@
 		</tr>
 		<tr>
 			<th>Birth date:</th>
-			<td><input name="unparsedBirthDate" type="date" /></td>
+			<td><input name="birthDate" type="date" /></td>
 		</tr>
 		<tr>
 			<th>ID code:</th>
@@ -47,4 +46,4 @@
 			<td><input type="submit" value="Add" /></td>
 		</tr>
 	</table>
-</form:form>
+</form>
