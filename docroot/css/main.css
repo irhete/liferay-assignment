@@ -1,0 +1,28 @@
+#viewCustomersTable {
+	font-size: 12px;
+}
+
+#viewCustomersTable td {
+	min-width: 75px;
+}
+
+#viewCustomersTable th {
+	font-size: 13px;
+}
+
+#addCustomerTable {
+	font-size: 12px;
+}
+
+#addCustomerTable td, th {
+	width: 100px;
+}
+
+
+.error {
+	color: red;
+}
+
+.success {
+	color: green;
+}
