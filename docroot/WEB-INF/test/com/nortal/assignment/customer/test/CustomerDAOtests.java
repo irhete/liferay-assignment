@@ -30,12 +30,13 @@ public class CustomerDAOtests {
 	ExpandoService expandoService;
 	@InjectMocks
 	CustomerDAOImpl customerDAO;
-	
+
 	private EmbeddedDatabase database;
 
 	@Before
 	public void setUp() throws SQLException, ParseException {
-		database = new EmbeddedDatabaseBuilder().addScript("schema.sql").addScript("test-data.sql").build();
+		database = new EmbeddedDatabaseBuilder().addScript("schema.sql")
+				.addScript("test-data.sql").build();
 		configureDB();
 		MockitoAnnotations.initMocks(this);
 	}
@@ -50,25 +51,19 @@ public class CustomerDAOtests {
 		customerDAO = new CustomerDAOImpl();
 		customerDAO.setJdbcTemplate(jdbcTemplate);
 	}
-	
+
 	@Test
-	public void addCustomerSuccessfulTest() throws ParseException, SQLException, SystemException, PortalException {
+	public void addCustomerSuccessfulTest() throws ParseException,
+			SQLException, SystemException, PortalException {
 		Customer customer = new Customer("new", "customer", getValidDate(), "");
 		Mockito.doNothing().when(expandoService).storeValue("", 1);
-//		int initCount = customerDAO.getCustomers().size();
 		customerDAO.insert(customer);
-//		int afterCount = customerDAO.getCustomers().size();
-//		Customer addedCustomer = customerDAO.getCustomers().get(0);
-//		assertEquals(1, afterCount - initCount);
-//		assertEquals("new", addedCustomer.getFirstName());
-//		assertEquals("customer", addedCustomer.getLastName());
-//		assertEquals(1, addedCustomer.getId());
-//		assertEquals(getValidDate(), addedCustomer.getBirthDate());
-		 assertEquals(3, customer.getId());
+		assertEquals(3, customer.getId());
 	}
-	
-	@Test(expected=DataIntegrityViolationException.class)
-	public void addCustomerFirstNameNullTest() throws ParseException, SQLException, SystemException, PortalException {
+
+	@Test(expected = DataIntegrityViolationException.class)
+	public void addCustomerFirstNameNullTest() throws ParseException,
+			SQLException, SystemException, PortalException {
 		Customer customer = new Customer();
 		customer.setLastName("customer");
 		customer.setBirthDate(getValidDate());
@@ -77,12 +72,13 @@ public class CustomerDAOtests {
 
 	private Date getValidDate() throws ParseException {
 		Date parsedBirthDate = new Date(new SimpleDateFormat("yyyy-MM-dd")
-		.parse("1990-8-22").getTime());
+				.parse("1990-8-22").getTime());
 		return parsedBirthDate;
 	}
 
 	@Test
-	public void getCustomersTest() throws SystemException, PortalException, ParseException, SQLException {
+	public void getCustomersTest() throws SystemException, PortalException,
+			ParseException, SQLException {
 		Mockito.when(expandoService.retrieveValue(1)).thenReturn("");
 		assertEquals(2, customerDAO.getCustomers().size());
 	}

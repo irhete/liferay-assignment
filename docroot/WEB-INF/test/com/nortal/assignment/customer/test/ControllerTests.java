@@ -52,10 +52,6 @@ public class ControllerTests {
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		// Customer customer1 = new Customer();
-		// Customer customer2 = new Customer();
-		// when(mockCustomerDAO.getCustomers()).thenReturn(new
-		// ArrayList<Customer>(Arrays.asList(customer1, customer2)));
 	}
 
 	@Test
@@ -95,8 +91,10 @@ public class ControllerTests {
 		String lastName = "last";
 		String birthDate = "1990-8-22";
 		String IDcode = "";
-		Date parsedBirthDate = new Date(new SimpleDateFormat("yyyy-MM-dd").parse(birthDate).getTime());
-		Customer customer = new Customer(firstName, lastName, parsedBirthDate, IDcode);
+		Date parsedBirthDate = new Date(new SimpleDateFormat("yyyy-MM-dd")
+				.parse(birthDate).getTime());
+		Customer customer = new Customer(firstName, lastName, parsedBirthDate,
+				IDcode);
 		CustomerValidator validator = new CustomerValidator();
 		Errors errors = new BeanPropertyBindingResult(customer, "customer");
 		validator.validate(customer, errors);
