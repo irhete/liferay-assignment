@@ -15,12 +15,9 @@ public class CustomerValidator implements Validator {
 
 	@Override
 	public void validate(Object arg0, Errors e) {
-		ValidationUtils.rejectIfEmpty(e, "firstName",
-				"First name can not be empty");
-		ValidationUtils.rejectIfEmpty(e, "lastName",
-				"Last name can not be empty");
-		ValidationUtils.rejectIfEmpty(e, "birthDate",
-				"Birth date can not be empty");
+		ValidationUtils.rejectIfEmpty(e, "firstName", "empty");
+		ValidationUtils.rejectIfEmpty(e, "lastName", "empty");
+		ValidationUtils.rejectIfEmpty(e, "birthDate", "empty");
 	}
 
 }

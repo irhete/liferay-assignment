@@ -1,21 +1,20 @@
 package com.nortal.assignment.customer.model;
 
-import java.sql.Date;
 
 public class Customer {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private Date birthDate;
+	private String birthDate;
 	private String IDcode;
 
-	public Customer(String firstName, String lastName, Date birthDate) {
+	public Customer(String firstName, String lastName, String birthDate) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
 	}
 
-	public Customer(String firstName, String lastName, Date birthDate,
+	public Customer(String firstName, String lastName, String birthDate,
 			String IDcode) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -42,11 +41,11 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 

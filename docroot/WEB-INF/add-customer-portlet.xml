@@ -38,5 +38,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-
+	<bean id="messageSource" name="messageSource"
+		class="com.nortal.assignment.customer.messagesource.VerticalDatabaseMessageSource">
+	</bean>
 </beans>

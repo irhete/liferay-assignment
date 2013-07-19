@@ -1,9 +1,6 @@
 package com.nortal.assignment.addcustomer.controller;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.annotation.Resource;
 import javax.portlet.RenderRequest;
@@ -11,24 +8,25 @@ import javax.portlet.RenderResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.nortal.assignment.customer.data.CustomerDAO;
+import com.nortal.assignment.customer.messagesource.VerticalDatabaseMessageSource;
 import com.nortal.assignment.customer.model.Customer;
+import com.nortal.assignment.customer.service.CustomerService;
 import com.nortal.assignment.customer.validator.CustomerValidator;
 
 @Controller(value = "AddCustomerController")
 @RequestMapping("VIEW")
 public class AddCustomerController {
-
 	@Resource
-	private CustomerDAO customerDAO;
+	private VerticalDatabaseMessageSource messageSource;
+	@Resource
+	private CustomerService customerService;
 
 	@RenderMapping
 	public String handleRenderRequest(RenderRequest request,
@@ -39,38 +37,22 @@ public class AddCustomerController {
 	@RenderMapping(params = "action=addCustomer")
 	public String addCustomerMethod(RenderRequest request,
 			RenderResponse response, Model model,
-			@RequestParam("firstName") String firstName,
-			@RequestParam("lastName") String lastName,
-			@RequestParam("birthDate") String birthDate,
-			@RequestParam("IDcode") String IDcode) {
-
-		Date parsedBirthDate;
+			@ModelAttribute(value = "customer") Customer customer,
+			BindingResult result) {
 		try {
-			parsedBirthDate = new Date(new SimpleDateFormat("yyyy-MM-dd")
-					.parse(birthDate).getTime());
-			Customer customer = new Customer(firstName, lastName,
-					parsedBirthDate, IDcode);
-
 			CustomerValidator validator = new CustomerValidator();
-			Errors errors = new BeanPropertyBindingResult(customer, "customer");
-			validator.validate(customer, errors);
+			validator.validate(customer, result);
 
-			if (errors.hasErrors()) {
-				model.addAttribute("errors", errors.getAllErrors());
-			} else {
-				customerDAO.insert(customer);
+			if (!result.hasErrors()) {
+				customerService.addCustomer(customer);
 				model.addAttribute("success", "Customer successfully added!");
 			}
-		} catch (ParseException e) {
-			model.addAttribute("error", "Wrong date format!");
 		} catch (SystemException e) {
-			model.addAttribute("error",
-					"Couldn't save ID code as Expando value.");
+			result.rejectValue("customer", "error");
 		} catch (PortalException e) {
-			model.addAttribute("error",
-					"Couldn't save ID code as Expando value.");
+			result.rejectValue("customer", "error");
 		} catch (SQLException e) {
-			model.addAttribute("error", "Could not add customer.");
+			result.rejectValue("customer", "error");
 		}
 
 		return "addCustomerDefaultRender";

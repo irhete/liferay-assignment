@@ -55,7 +55,7 @@ public class CustomerDAOtests {
 	@Test
 	public void addCustomerSuccessfulTest() throws ParseException,
 			SQLException, SystemException, PortalException {
-		Customer customer = new Customer("new", "customer", getValidDate(), "");
+		Customer customer = new Customer("new", "customer", "1990-8-22", "");
 		Mockito.doNothing().when(expandoService).storeValue("", 1);
 		customerDAO.insert(customer);
 		assertEquals(3, customer.getId());
@@ -66,7 +66,7 @@ public class CustomerDAOtests {
 			SQLException, SystemException, PortalException {
 		Customer customer = new Customer();
 		customer.setLastName("customer");
-		customer.setBirthDate(getValidDate());
+		customer.setBirthDate("1990-8-22");
 		customerDAO.insert(customer);
 	}
 

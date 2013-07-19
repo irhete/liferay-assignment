@@ -15,7 +15,7 @@
 }
 
 #addCustomerTable td, th {
-	width: 100px;
+	min-width: 100px;
 }
 
 
@@ -26,3 +26,4 @@
 .success {
 	color: green;
 }
+
