@@ -12,7 +12,7 @@
   http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	
 	<context:annotation-config />
-	<context:component-scan base-package="com.nortal.assignment.customer, com.nortal.assignment.addcustomer.controller" />
+	<context:component-scan base-package="com.nortal.assignment.customer, com.nortal.assignment.addcustomer.controller, com.nortal.assignment.messagesource" />
 	
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -24,6 +24,9 @@
 	</bean>
 
 
+	<bean id="messageSource" name="messageSource"
+		class="com.nortal.assignment.messagesource.VerticalDatabaseMessageSource">
+	</bean>
 
 	<!-- Database -->
 	<bean id="dataSource"
@@ -36,9 +39,5 @@
 
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
-	</bean>
-
-	<bean id="messageSource" name="messageSource"
-		class="com.nortal.assignment.customer.messagesource.VerticalDatabaseMessageSource">
 	</bean>
 </beans>

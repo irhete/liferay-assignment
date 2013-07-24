@@ -10,10 +10,11 @@
         http://www.springframework.org/schema/context/spring-context-3.0.xsd  
         http://www.springframework.org/schema/aop  
   http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
-	
+
 	<context:annotation-config />
-	<context:component-scan base-package="com.nortal.assignment.customer, com.nortal.assignment.viewcustomers.controller" />
-	
+	<context:component-scan
+		base-package="com.nortal.assignment.customer, com.nortal.assignment.viewcustomers.controller, com.nortal.assignment.messagesource" />
+
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -24,6 +25,9 @@
 	</bean>
 
 
+	<bean id="messageSource" name="messageSource"
+		class="com.nortal.assignment.messagesource.VerticalDatabaseMessageSource">
+	</bean>
 
 	<!-- Database -->
 	<bean id="dataSource"

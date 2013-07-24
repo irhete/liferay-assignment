@@ -1,2 +1,3 @@
-com\nortal\assignment\customer\test\DAOtests.class
+com\nortal\assignment\customer\test\ValidatorTests.class
+com\nortal\assignment\customer\test\CustomerDAOtests.class
 com\nortal\assignment\customer\test\ControllerTests.class
