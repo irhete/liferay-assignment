@@ -28,8 +28,6 @@ import com.nortal.assignment.customer.validator.CustomerValidator;
 @Controller(value = "AddCustomerController")
 @RequestMapping("VIEW")
 public class AddCustomerController {
-	// @Resource
-	// private VerticalDatabaseMessageSource messageSource;
 	@Resource
 	private CustomerService customerService;
 
@@ -57,7 +55,6 @@ public class AddCustomerController {
 			CustomerValidator validator = new CustomerValidator();
 			validator.validate(customer, result);
 			if (!result.hasErrors()) {
-				result.reject("customer", "Rejected");
 				customerService.addCustomer(customer);
 				model.addAttribute("success", "Customer successfully added!");
 			}

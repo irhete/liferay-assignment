@@ -42,7 +42,6 @@
 			<td><input name="IDcode" type="text" /></td>
 		</tr>
 		<tr>
-			<th />
 			<td><input type="submit" value="<spring:message code="add.text" text='Add'/>" /></td>
 		</tr>
 	</table>

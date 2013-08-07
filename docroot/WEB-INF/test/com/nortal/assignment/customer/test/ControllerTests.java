@@ -11,14 +11,12 @@ import javax.portlet.ActionResponse;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,11 +49,6 @@ public class ControllerTests {
 	private AddCustomerController addCustomerController;
 	@InjectMocks
 	private ViewCustomersController viewCustomersController;
-
-	@Before
-	public void setUp() {
-		MockitoAnnotations.initMocks(this);
-	}
 
 	@Test
 	public void addCustomerDefaultViewTest() {
