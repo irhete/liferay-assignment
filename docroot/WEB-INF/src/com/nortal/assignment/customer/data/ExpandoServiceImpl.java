@@ -28,14 +28,14 @@ public class ExpandoServiceImpl implements ExpandoService {
 		companyId = CompanyLocalServiceUtil.getCompanies().get(0)
 				.getCompanyId();
 		classNameId = ClassNameLocalServiceUtil.getClassNameId(CLASS_NAME);
-		getAndSetTableId();	
+		getAndSetTableId();
 		getAndSetColumnId();
 	}
 
-	private void getAndSetTableId() throws PortalException,
-			SystemException {
+	private void getAndSetTableId() throws PortalException, SystemException {
 		try {
-			tableId = ExpandoTableLocalServiceUtil.getDefaultTable(companyId, classNameId).getTableId();
+			tableId = ExpandoTableLocalServiceUtil.getDefaultTable(companyId,
+					classNameId).getTableId();
 		} catch (NoSuchTableException e) {
 			tableId = ExpandoTableLocalServiceUtil.addDefaultTable(companyId,
 					classNameId).getTableId();
@@ -46,13 +46,13 @@ public class ExpandoServiceImpl implements ExpandoService {
 		}
 	}
 
-	private void getAndSetColumnId() throws SystemException,
-			PortalException {
+	private void getAndSetColumnId() throws SystemException, PortalException {
 		try {
-			columnId = ExpandoColumnLocalServiceUtil.getColumn(tableId, COLUMN_NAME).getColumnId();
-		} catch (NoSuchTableException e) {
-			ExpandoColumn column = ExpandoColumnLocalServiceUtil.addColumn(tableId,
-					COLUMN_NAME, ExpandoColumnConstants.STRING);
+			columnId = ExpandoColumnLocalServiceUtil.getColumn(tableId,
+					COLUMN_NAME).getColumnId();
+		} catch (SystemException e) {
+			ExpandoColumn column = ExpandoColumnLocalServiceUtil.addColumn(
+					tableId, COLUMN_NAME, ExpandoColumnConstants.STRING);
 			columnId = column.getColumnId();
 		} finally {
 			if (columnId == 0) {
@@ -70,13 +70,14 @@ public class ExpandoServiceImpl implements ExpandoService {
 		ExpandoValueLocalServiceUtil.addValue(classNameId, tableId, columnId,
 				customerId, IDcode);
 	}
-	
+
 	@Override
-	public String retrieveValue(int customerId)
-			throws SystemException, PortalException {
+	public String retrieveValue(int customerId) throws SystemException,
+			PortalException {
 		if (columnId == 0) {
 			init();
 		}
-		return ExpandoValueLocalServiceUtil.getValue(tableId, columnId, customerId).getString();  
+		return ExpandoValueLocalServiceUtil.getValue(tableId, columnId,
+				customerId).getString();
 	}
 }

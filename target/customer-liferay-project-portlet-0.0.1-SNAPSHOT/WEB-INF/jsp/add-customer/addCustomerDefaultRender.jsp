@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<h1>Add customer</h1>
+<h1><spring:message code="add.customer.text" text='Add Customer'/></h1>
 
 <portlet:defineObjects />
 
@@ -42,7 +42,6 @@
 			<td><input name="IDcode" type="text" /></td>
 		</tr>
 		<tr>
-			<th />
 			<td><input type="submit" value="<spring:message code="add.text" text='Add'/>" /></td>
 		</tr>
 	</table>

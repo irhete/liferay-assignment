@@ -24,7 +24,6 @@
 		<property name="order" value="1" />
 	</bean>
 
-
 	<bean id="messageSource" name="messageSource"
 		class="com.nortal.assignment.messagesource.VerticalDatabaseMessageSource">
 	</bean>

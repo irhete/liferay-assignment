@@ -60,11 +60,11 @@ public class AddCustomerController {
 			}
 
 		} catch (SystemException e) {
-			result.reject("customer", "Customer could not be saved");
+			result.reject("error");
 		} catch (PortalException e) {
-			result.reject("customer", "Customer could not be saved");
+			result.reject("error");
 		} catch (SQLException e) {
-			result.reject("customer", "Customer could not be saved");
+			result.reject("error");
 		}
 
 		return "addCustomerDefaultRender";
