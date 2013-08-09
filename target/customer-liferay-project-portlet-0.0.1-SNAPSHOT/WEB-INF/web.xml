@@ -24,14 +24,14 @@
 		<url-pattern>/WEB-INF/servlet/view</url-pattern>
 	</servlet-mapping>
 
-    <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-     <context-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
          /WEB-INF/add-customer-portlet.xml
          /WEB-INF/view-customers-portlet.xml
        </param-value>
-    </context-param>
+	</context-param>
 </web-app>
