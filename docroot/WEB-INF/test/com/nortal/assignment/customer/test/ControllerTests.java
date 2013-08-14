@@ -11,7 +11,6 @@ import javax.portlet.ActionResponse;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -73,16 +72,6 @@ public class ControllerTests {
 						request, response, model));
 		Mockito.verify(model).addAttribute("success",
 				"Customer successfully added!");
-	}
-
-	@Ignore
-	@Test
-	public void addCustomerWrongDateFormatTest() throws ParseException {
-		Customer customer = new Customer("first", "name", getValidDate(), "");
-		assertEquals("addCustomerDefaultRender",
-				addCustomerController.addCustomerMethod(customer, result,
-						request, response, model));
-		Mockito.verify(model).addAttribute("error", "Wrong date format!");
 	}
 
 	@Test
